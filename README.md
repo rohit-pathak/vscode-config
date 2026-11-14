@@ -12,12 +12,14 @@ git clone https://github.com/rohit-pathak/vscode-config ~/Development/tools/vsco
 
 Then run **Developer: Reload Window** in VS Code.
 
-`install.sh` symlinks `settings.json` and `keybindings.json` into VS Code's
-user folder (existing files are backed up, not overwritten), then builds each
-extension in `extensions/` from source and installs it. Re-running it is safe.
+`install.sh` copies `settings.json` and `keybindings.json` into VS Code's
+user folder, then builds each extension in `extensions/` from source and
+installs it. Re-running it is safe: a file that differs from the repo's is
+backed up as `<name>.backup-<timestamp>` before being replaced.
 
-Because the settings are symlinked, changes VS Code makes (switching theme, for
-example) land in this repo. Review them with `git diff` before committing.
+The copy is one-way. Settings changed later in VS Code stay on that machine and
+never reach this repo, so machine-specific (e.g. work) settings can't leak. To
+change the shared setup, edit the files here, commit, and re-run `install.sh`.
 
 ## Marketplace extensions the settings expect
 
