@@ -29,6 +29,53 @@
     // VIM Motions
     "vim.leader": "<Space>",
     "vim.autoindent": true,
+    // LazyVim-style navigation. Full list and rationale: KEYBINDINGS.md
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // Files and editors
+        { "before": ["<leader>", "e"], "commands": ["workbench.view.explorer"] },
+        { "before": ["<leader>", "<space>"], "commands": ["workbench.action.quickOpen"] },
+        { "before": ["<leader>", "f", "f"], "commands": ["workbench.action.quickOpen"] },
+        { "before": ["<leader>", "f", "r"], "commands": ["workbench.action.openRecent"] },
+        { "before": ["<leader>", "/"], "commands": ["workbench.action.findInFiles"] },
+        { "before": ["<leader>", ","], "commands": ["workbench.action.showAllEditors"] },
+        { "before": ["H"], "commands": ["workbench.action.previousEditor"] },
+        { "before": ["L"], "commands": ["workbench.action.nextEditor"] },
+        { "before": ["<leader>", "b", "d"], "commands": ["workbench.action.closeActiveEditor"] },
+
+        // Git
+        { "before": ["<leader>", "g", "d"], "commands": ["git.openChange"] },
+        { "before": ["<leader>", "g", "s"], "commands": ["workbench.view.scm"] },
+        { "before": ["]", "h"], "commands": ["workbench.action.editor.nextChange"] },
+        { "before": ["[", "h"], "commands": ["workbench.action.editor.previousChange"] },
+        { "before": ["<leader>", "g", "h", "p"], "commands": ["editor.action.dirtydiff.next"] },
+        { "before": ["<leader>", "g", "b"], "commands": ["git.blame.toggleEditorDecoration"] },
+
+        // Reading code
+        { "before": ["g", "r"], "commands": ["editor.action.goToReferences"] },
+        { "before": ["g", "I"], "commands": ["editor.action.goToImplementation"] },
+        { "before": ["g", "y"], "commands": ["editor.action.goToTypeDefinition"] },
+        { "before": ["K"], "commands": ["editor.action.showHover"] },
+        { "before": ["<leader>", "s", "s"], "commands": ["workbench.action.gotoSymbol"] },
+        { "before": ["<leader>", "s", "S"], "commands": ["workbench.action.showAllSymbols"] },
+        { "before": ["<leader>", "c", "s"], "commands": ["outline.focus"] },
+        { "before": ["]", "d"], "commands": ["editor.action.marker.next"] },
+        { "before": ["[", "d"], "commands": ["editor.action.marker.prev"] },
+
+        // Markdown: headings (references outside markdown), preview
+        { "before": ["]", "]"], "commands": ["markdownPreviewColors.nextHeading"] },
+        { "before": ["[", "["], "commands": ["markdownPreviewColors.previousHeading"] },
+        { "before": ["<leader>", "c", "p"], "commands": ["markdown.showPreviewToSide"] },
+
+        // Windows and UI
+        { "before": ["<C-h>"], "commands": ["workbench.action.navigateLeft"] },
+        { "before": ["<C-j>"], "commands": ["workbench.action.navigateDown"] },
+        { "before": ["<C-k>"], "commands": ["workbench.action.navigateUp"] },
+        { "before": ["<C-l>"], "commands": ["workbench.action.navigateRight"] },
+        { "before": ["<leader>", "|"], "commands": ["workbench.action.splitEditorRight"] },
+        { "before": ["<leader>", "-"], "commands": ["workbench.action.splitEditorDown"] },
+        { "before": ["<leader>", "u", "z"], "commands": ["workbench.action.toggleZenMode"] },
+        { "before": ["<leader>", "u", "w"], "commands": ["editor.action.toggleWordWrap"] }
+    ],
     "diffEditor.renderSideBySide": false,
     "chat.viewSessions.orientation": "stacked",
     "markdown.preview.fontSize": 18,

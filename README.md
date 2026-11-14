@@ -3,6 +3,8 @@
 My VS Code setup: user settings, keybindings, and a small local extension,
 installable on any macOS or Linux machine with one script.
 
+**Keys:** Vim mode with LazyVim-style bindings, listed in [KEYBINDINGS.md](KEYBINDINGS.md).
+
 ## Install
 
 ```bash

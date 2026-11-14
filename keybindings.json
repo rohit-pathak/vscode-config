@@ -38,5 +38,13 @@
     {
         "key": "shift+cmd+r",
         "command": "workbench.scm.focus"
-    }
+    },
+
+    // File explorer: Vim-style keys (KEYBINDINGS.md). Vim mode doesn't reach
+    // the explorer, so these are plain VS Code bindings scoped to it.
+    { "key": "j", "command": "list.focusDown", "when": "filesExplorerFocus && !inputFocus" },
+    { "key": "k", "command": "list.focusUp", "when": "filesExplorerFocus && !inputFocus" },
+    { "key": "h", "command": "list.collapse", "when": "filesExplorerFocus && !inputFocus" },
+    { "key": "l", "command": "list.select", "when": "filesExplorerFocus && !inputFocus" },
+    { "key": "q", "command": "workbench.action.closeSidebar", "when": "filesExplorerFocus && !inputFocus" }
 ]

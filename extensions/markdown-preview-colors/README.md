@@ -35,3 +35,9 @@ Then run **Developer: Reload Window**. Logs: Output panel → "Markdown Preview 
 
 - `markdownPreviewColors.bodyTextStrength` (default `85`): percent of the
   editor foreground mixed into the background for body text. `100` = no dimming.
+
+## Reading keys in the preview
+
+`preview/vim-keys.js` is injected into the preview through
+`markdown.previewScripts` and handles `j`/`k`, `Ctrl-d`/`Ctrl-u`, `gg`/`G` and
+`]]`/`[[` inside the page, where VSCodeVim cannot reach.

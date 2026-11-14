@@ -3,7 +3,7 @@
   "displayName": "Markdown Preview Colors",
   "description": "Colors bold text and headings in the markdown preview to match the active theme's code view.",
   "publisher": "local",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "private": true,
   "license": "UNLICENSED",
   "engines": {
@@ -14,8 +14,23 @@
     "onStartupFinished"
   ],
   "contributes": {
+    "commands": [
+      {
+        "command": "markdownPreviewColors.nextHeading",
+        "title": "Go to Next Heading (or Next Reference outside Markdown)",
+        "category": "Markdown"
+      },
+      {
+        "command": "markdownPreviewColors.previousHeading",
+        "title": "Go to Previous Heading (or Previous Reference outside Markdown)",
+        "category": "Markdown"
+      }
+    ],
     "markdown.previewStyles": [
       "./generated/preview.css"
+    ],
+    "markdown.previewScripts": [
+      "./preview/vim-keys.js"
     ],
     "configuration": {
       "title": "Markdown Preview Colors",

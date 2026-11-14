@@ -58,6 +58,8 @@ function activate(context) {
 
   context.subscriptions.push(
     log,
+    vscode.commands.registerCommand('markdownPreviewColors.nextHeading', () => jumpToHeading(1)),
+    vscode.commands.registerCommand('markdownPreviewColors.previousHeading', () => jumpToHeading(-1)),
     vscode.window.onDidChangeActiveColorTheme(update),
     vscode.workspace.onDidChangeConfiguration((e) => {
       if (
@@ -74,6 +76,84 @@ function activate(context) {
 
   update();
 }
+
+/* ---------- Heading navigation: ]] and [[ ---------- */
+
+/**
+ * In markdown, move the cursor to the next (1) or previous (-1) heading.
+ * Elsewhere, fall back to LazyVim's meaning of ]] / [[: next/previous
+ * reference to the symbol under the cursor.
+ * @param {1 | -1} direction
+ */
+function jumpToHeading(direction) {
+  const editor = vscode.window.activeTextEditor;
+  if (!editor) return;
+  if (editor.document.languageId !== 'markdown') {
+    vscode.commands.executeCommand(
+      direction > 0 ? 'editor.action.wordHighlight.next' : 'editor.action.wordHighlight.prev',
+    );
+    return;
+  }
+
+  const lines = [];
+  for (let i = 0; i < editor.document.lineCount; i++) lines.push(editor.document.lineAt(i).text);
+
+  const target = findHeading(headingLines(lines), editor.selection.active.line, direction);
+  if (target === undefined) return;
+
+  const pos = new vscode.Position(target, 0);
+  editor.selection = new vscode.Selection(pos, pos);
+  editor.revealRange(new vscode.Range(pos, pos), vscode.TextEditorRevealType.InCenterIfOutsideViewport);
+}
+
+/**
+ * Line numbers of ATX headings (`# Title` .. `###### Title`), skipping
+ * YAML front matter and fenced code blocks, where `#` starts a comment.
+ * @param {string[]} lines
+ * @returns {number[]}
+ */
+function headingLines(lines) {
+  const result = [];
+  let i = 0;
+
+  // Front matter: a `---` block on the very first line.
+  if (/^---\s*$/.test(lines[0] ?? '')) {
+    i = 1;
+    while (i < lines.length && !/^(---|\.\.\.)\s*$/.test(lines[i])) i++;
+    i++;
+  }
+
+  /** @type {string | null} the opening fence, e.g. "```" or "~~~~" */
+  let fence = null;
+  for (; i < lines.length; i++) {
+    const line = lines[i];
+    const fenceMatch = /^ {0,3}(`{3,}|~{3,})/.exec(line);
+    if (fence) {
+      // A fence closes with the same character, at least as long, nothing after.
+      if (fenceMatch && fenceMatch[1][0] === fence[0] && fenceMatch[1].length >= fence.length &&
+          line.trim() === fenceMatch[1]) {
+        fence = null;
+      }
+    } else if (fenceMatch) {
+      fence = fenceMatch[1];
+    } else if (/^ {0,3}#{1,6}(\s|$)/.test(line)) {
+      result.push(i);
+    }
+  }
+  return result;
+}
+
+/**
+ * The first heading after `line` (direction 1) or the last one before it (-1).
+ * @param {number[]} headings sorted line numbers
+ * @param {number} line
+ * @param {1 | -1} direction
+ */
+function findHeading(headings, line, direction) {
+  return direction > 0 ? headings.find((h) => h > line) : headings.findLast((h) => h < line);
+}
+
+/* ---------- Preview colors ---------- */
 
 /** @param {vscode.LogOutputChannel} log */
 function regenerate(log) {
@@ -310,5 +390,5 @@ module.exports = {
   activate,
   deactivate,
   // Exported for tests.
-  _internal: { parseJsonc, resolveForeground, matchSelector, buildCss, BOLD_STACK, HEADING_STACKS },
+  _internal: { headingLines, findHeading, parseJsonc, resolveForeground, matchSelector, buildCss, BOLD_STACK, HEADING_STACKS },
 };

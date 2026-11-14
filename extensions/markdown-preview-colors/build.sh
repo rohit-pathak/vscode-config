@@ -21,9 +21,10 @@ OUT="dist/$NAME-$VERSION.vsix"
 STAGE=$(mktemp -d)
 trap 'rm -rf "$STAGE"' EXIT
 
-mkdir -p "$STAGE/extension/generated"
+mkdir -p "$STAGE/extension/generated" "$STAGE/extension/preview"
 cp package.json extension.js README.md "$STAGE/extension/"
 cp generated/preview.css "$STAGE/extension/generated/"
+cp preview/*.js "$STAGE/extension/preview/"
 
 cat > "$STAGE/[Content_Types].xml" <<'XML'
 <?xml version="1.0" encoding="utf-8"?>
