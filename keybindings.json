@@ -1,0 +1,42 @@
+// Place your key bindings in this file to override the defaults
+// For "cmd + `" to work, disable the system level shortcut on Mac first.
+[
+    { 
+        "key": "cmd+`",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "terminal.active" 
+    },
+    {
+        "key": "shift+cmd+i",
+        "command": "workbench.action.chat.openAsk"
+    },
+    {
+        "key": "shift+cmd+i",
+        "command": "-workbench.action.chat.openAgent",
+        "when": "config.chat.agent.enabled && !chatSetupHidden"
+    },
+    {
+        "key": "shift+cmd+i",
+        "command": "workbench.panel.chat",
+        "when": "workbench.panel.chat.view.copilot.active"
+    },
+    {
+        "key": "ctrl+cmd+i",
+        "command": "-workbench.panel.chat",
+        "when": "workbench.panel.chat.view.copilot.active"
+    },
+    {
+        "key": "shift+cmd+r",
+        "command": "-workbench.action.browser.hardReload",
+        "when": "browserFocused && activeEditor == 'workbench.editor.browser'"
+    },
+    {
+        "key": "shift+cmd+r",
+        "command": "-rerunSearchEditorSearch",
+        "when": "inSearchEditor"
+    },
+    {
+        "key": "shift+cmd+r",
+        "command": "workbench.scm.focus"
+    }
+]

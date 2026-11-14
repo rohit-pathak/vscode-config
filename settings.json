@@ -1,0 +1,42 @@
+{
+    "[typescript]": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[javascript]": {
+        "editor.tabSize": 2
+    },
+    "[html]": {
+        "editor.tabSize": 2
+    },
+    "[css]": {
+        "editor.tabSize": 2
+    },
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "angular.forceStrictTemplates": true,
+    "editor.fontSize": 15,
+    "explorer.openEditors.sortOrder": "alphabetical",
+    "explorer.openEditors.visible": 20,
+    "files.autoSave": "onFocusChange",
+    "editor.minimap.enabled": false,
+    "workbench.activityBar.location": "hidden",
+    
+    // VIM Motions
+    "vim.leader": "<Space>",
+    "vim.autoindent": true,
+    "diffEditor.renderSideBySide": false,
+    "chat.viewSessions.orientation": "stacked",
+    "markdown.preview.fontSize": 18,
+    "markdown.preview.fontFamily": "Charter, 'Iowan Old Style', Georgia, serif",
+    "editor.accessibilitySupport": "off",
+
+    // Supply-chain policy (madeye): no silent extension updates; review weekly.
+    "extensions.autoUpdate": "off",
+    "extensions.autoCheckUpdates": true,
+    "workbench.colorTheme": "Nord"
+}

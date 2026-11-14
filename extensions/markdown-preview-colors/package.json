@@ -1,0 +1,33 @@
+{
+  "name": "markdown-preview-colors",
+  "displayName": "Markdown Preview Colors",
+  "description": "Colors bold text and headings in the markdown preview to match the active theme's code view.",
+  "publisher": "local",
+  "version": "0.2.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "markdown.previewStyles": [
+      "./generated/preview.css"
+    ],
+    "configuration": {
+      "title": "Markdown Preview Colors",
+      "properties": {
+        "markdownPreviewColors.bodyTextStrength": {
+          "type": "number",
+          "default": 85,
+          "minimum": 50,
+          "maximum": 100,
+          "description": "How strong body text is, as a percent mix of the editor foreground into the background. Lower dims body text so bold and headings stand out more. 100 means no dimming."
+        }
+      }
+    }
+  }
+}
