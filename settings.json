@@ -78,6 +78,8 @@
     ],
     "diffEditor.renderSideBySide": false,
     "chat.viewSessions.orientation": "stacked",
+    // Open markdown in the rendered preview; "Reopen Editor With..." gets the text back.
+    "workbench.editorAssociations": { "*.md": "vscode.markdown.preview.editor" },
     "markdown.preview.fontSize": 18,
     "markdown.preview.fontFamily": "Charter, 'Iowan Old Style', Georgia, serif",
     "editor.accessibilitySupport": "off",
