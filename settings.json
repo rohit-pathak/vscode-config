@@ -19,12 +19,14 @@
         "scminput": false
     },
     "angular.forceStrictTemplates": true,
-    "editor.fontSize": 15,
+    "editor.fontSize": 14,
+    "editor.lineNumbers": "relative",
     "explorer.openEditors.sortOrder": "alphabetical",
     "explorer.openEditors.visible": 20,
     "files.autoSave": "onFocusChange",
     "editor.minimap.enabled": false,
     "workbench.activityBar.location": "hidden",
+    "window.zoomLevel": 1,
     
     // VIM Motions
     "vim.leader": "<Space>",
@@ -87,5 +89,6 @@
     // Supply-chain policy (madeye): no silent extension updates; review weekly.
     "extensions.autoUpdate": "off",
     "extensions.autoCheckUpdates": true,
-    "workbench.colorTheme": "Nord"
+    "workbench.colorTheme": "Gruvbox Dark Soft",
+    "workbench.editor.empty.hint": "hidden"
 }
